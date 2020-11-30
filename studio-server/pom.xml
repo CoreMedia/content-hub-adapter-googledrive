@@ -6,6 +6,7 @@
     <groupId>com.coremedia.blueprint</groupId>
     <artifactId>studio-server.extensions</artifactId>
     <version>1-SNAPSHOT</version>
+    <relativePath>../../../../apps/studio-server/modules/extensions/pom.xml</relativePath>
   </parent>
 
   <groupId>com.coremedia.blueprint.contenthub</groupId>
