@@ -10,8 +10,6 @@
   </fx:Metadata>
 
   <fx:Script><![CDATA[
-    import com.coremedia.blueprint.studio.contenthub.googledrive.*;
-
     import mx.resources.ResourceManager;
 
     public static const xtype:String = "com.coremedia.blueprint.studio.contenthub.googledrive.ContentHubGoogleDriveStudioPlugin";

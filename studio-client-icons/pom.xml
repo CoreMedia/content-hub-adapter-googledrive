@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.coremedia.labs.plugins</groupId>
+  <artifactId>studio-client.content-hub-adapter-googledrive-icons</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>swc</packaging>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <sencha.target>${project.build.directory}/packages/${project.groupId}__${project.artifactId}</sencha.target>
+    <icon.unpack.dir>${project.build.directory}/unpacked-iconfont</icon.unpack.dir>
+    <jangaroo.version>4.0.76</jangaroo.version>
+    <studio-client.version>2101.1</studio-client.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.coremedia.cms</groupId>
+        <artifactId>studio-client-core-bom</artifactId>
+        <version>${studio-client.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.coremedia.cms</groupId>
+        <artifactId>studio-client-thirdparty-bom</artifactId>
+        <version>${studio-client.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jangaroo-runtime</artifactId>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>${project.build.directory}/generated-sources/joo</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/main/sencha</directory>
+        <targetPath>../packages/${project.groupId}__${project.artifactId}</targetPath>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- clean node and node_modules in all themes -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${project.basedir}</directory>
+              <includes>
+                <include>node/**</include>
+                <include>node_modules/**</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.11.0</version>
+        <configuration>
+          <nodeVersion>v14.15.4</nodeVersion><!-- LTS -->
+          <yarnVersion>v1.22.5</yarnVersion>
+          <npmRegistryURL>${coremedia.repository.npm}</npmRegistryURL>
+          <arguments>install</arguments>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install-node-and-yarn</id>
+            <goals>
+              <goal>install-node-and-yarn</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+          <execution>
+            <id>install-node-modules</id>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <!--
+               Pass proxy config for yarn install. (the installation is
+               the only interesting part regarding proxies anyway)
+              -->
+              <yarnInheritsProxyConfigFromMaven>true</yarnInheritsProxyConfigFromMaven>
+              <arguments>install --no-progress</arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>build-icon-font</id>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <arguments>build</arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>copy-icon-font-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <copy file="${icon.unpack.dir}/META-INF/resources/content-hub-adapter-googledrive-icons-100/properties/content-hub-adapter-googledrive-icons-100.properties"
+                      tofile="${project.build.directory}/generated-sources/joo/com/coremedia/icons/GoogleDriveIcons.properties">
+                  <filterchain>
+                    <tokenfilter>
+                      <replaceregex pattern="content-hub-adapter-googledrive-icons-100"
+                                    replace="content-hub-adapter-googledrive-icons" flags="g"/>
+                    </tokenfilter>
+                  </filterchain>
+                </copy>
+                <mkdir dir="${sencha.target}/resources/fonts"/>
+                <copy todir="${sencha.target}/resources/fonts">
+                  <fileset dir="${icon.unpack.dir}/META-INF/resources"/>
+                  <regexpmapper from="^(.*)/fonts/(.*)-100.(.*)$$" to="\2.\3" handledirsep="true"/>
+                </copy>
+                <mkdir dir="${sencha.target}/resources/css"/>
+                <copy todir="${sencha.target}/resources/css">
+                  <fileset dir="${icon.unpack.dir}/META-INF/resources"/>
+                  <regexpmapper from="^(.*)/css/(.*)-100.(.*)$$" to="\2.\3" handledirsep="true"/>
+                  <filterchain>
+                    <tokenfilter>
+                      <replaceregex pattern="content-hub-adapter-googledrive-icons-100"
+                                    replace="content-hub-adapter-googledrive-icons" flags="g"/>
+                    </tokenfilter>
+                  </filterchain>
+                </copy>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.jangaroo</groupId>
+        <artifactId>jangaroo-maven-plugin</artifactId>
+        <version>${jangaroo.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <additionalCssNonBundle>
+            <value>resources/css/content-hub-adapter-googledrive-icons.css</value>
+          </additionalCssNonBundle>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

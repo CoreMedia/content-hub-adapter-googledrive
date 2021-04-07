@@ -9,6 +9,7 @@
   <modules>
     <module>studio-server</module>
     <module>studio-client</module>
+    <module>studio-client-icons</module>
     <module>plugin-descriptor</module>
   </modules>
 
