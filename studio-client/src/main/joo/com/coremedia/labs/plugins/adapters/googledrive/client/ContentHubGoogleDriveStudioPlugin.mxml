@@ -6,10 +6,12 @@
 
   <fx:Metadata>
     [ResourceBundle('com.coremedia.contenthub.ContentHub')]
-    [ResourceBundle('com.coremedia.blueprint.studio.contenthub.googledrive.ContentHubGoogleDrive')]
+    [ResourceBundle('com.coremedia.labs.plugins.adapters.googledrive.client.ContentHubGoogleDrive')]
   </fx:Metadata>
 
   <fx:Script><![CDATA[
+    import com.coremedia.blueprint.studio.contenthub.googledrive.*;
+
     import mx.resources.ResourceManager;
 
     public static const xtype:String = "com.coremedia.blueprint.studio.contenthub.googledrive.ContentHubGoogleDriveStudioPlugin";
@@ -20,7 +22,7 @@
   <editor:configuration>
     <editor:CopyResourceBundleProperties
             destination="{ResourceManager.getInstance().getResourceBundle(null, 'com.coremedia.contenthub.ContentHub')}"
-            source="{ResourceManager.getInstance().getResourceBundle(null, 'com.coremedia.blueprint.studio.contenthub.googledrive.ContentHubGoogleDrive')}"/>
+            source="{ResourceManager.getInstance().getResourceBundle(null, 'com.coremedia.labs.plugins.adapters.googledrive.client.ContentHubGoogleDrive')}"/>
   </editor:configuration>
 
 </editor:StudioPlugin>

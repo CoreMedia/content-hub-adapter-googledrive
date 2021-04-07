@@ -1,11 +1,11 @@
-package com.coremedia.blueprint.contenthub.adapters.googledrive.configuration;
+package com.coremedia.labs.plugins.adapters.googledrive.server.configuration;
 
-import com.coremedia.blueprint.contenthub.adapters.googledrive.GoogleDriveContentHubAdapterFactory;
-import com.coremedia.blueprint.contenthub.adapters.googledrive.GoogleDriveContentHubSettings;
 import com.coremedia.contenthub.api.BaseFileSystemConfiguration;
 import com.coremedia.contenthub.api.ContentHubAdapterFactory;
 import com.coremedia.contenthub.api.ContentHubMimeTypeService;
 import com.coremedia.contenthub.api.ContentHubType;
+import com.coremedia.labs.plugins.adapters.googledrive.server.GoogleDriveContentHubAdapterFactory;
+import com.coremedia.labs.plugins.adapters.googledrive.server.GoogleDriveContentHubSettings;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +16,6 @@ import java.util.Map;
 @Configuration
 @Import({BaseFileSystemConfiguration.class})
 public class GoogleDriveContentHubAdapterConfiguration {
-
-  @Bean
-  public ContentHubAdapterFactory<GoogleDriveContentHubSettings> googleDriveContentHubAdapterFactory(@NonNull ContentHubMimeTypeService mimeTypeService) {
-    return new GoogleDriveContentHubAdapterFactory(mimeTypeService, typeMapping());
-  }
 
   private static Map<ContentHubType, String> typeMapping() {
     return Map.of(
@@ -34,6 +29,11 @@ public class GoogleDriveContentHubAdapterConfiguration {
             new ContentHubType("msword", new ContentHubType("application")), "CMArticle",
             new ContentHubType("vnd.openxmlformats-officedocument.wordprocessingml.document", new ContentHubType("application")), "CMArticle"
     );
+  }
+
+  @Bean
+  public ContentHubAdapterFactory<GoogleDriveContentHubSettings> googleDriveContentHubAdapterFactory(@NonNull ContentHubMimeTypeService mimeTypeService) {
+    return new GoogleDriveContentHubAdapterFactory(mimeTypeService, typeMapping());
   }
 
 }

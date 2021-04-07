@@ -1,6 +1,5 @@
-package com.coremedia.blueprint.contenthub.adapters.googledrive.model;
+package com.coremedia.labs.plugins.adapters.googledrive.server.model;
 
-import com.coremedia.blueprint.contenthub.adapters.googledrive.service.GoogleDriveService;
 import com.coremedia.contenthub.api.BaseFileSystemItem;
 import com.coremedia.contenthub.api.ContentHubBlob;
 import com.coremedia.contenthub.api.ContentHubDefaultBlob;
@@ -11,6 +10,7 @@ import com.coremedia.contenthub.api.Item;
 import com.coremedia.contenthub.api.UrlBlobBuilder;
 import com.coremedia.contenthub.api.preview.DetailsElement;
 import com.coremedia.contenthub.api.preview.DetailsSection;
+import com.coremedia.labs.plugins.adapters.googledrive.server.service.GoogleDriveService;
 import com.google.api.services.drive.model.File;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
@@ -24,13 +24,12 @@ import java.util.Optional;
 
 public class GoogleDriveItem extends BaseFileSystemItem implements Item, FileAdapter {
 
-  private static final int BLOB_SIZE_LIMIT = 10000000;
   public static final String CLASSIFIER_PREVIEW = "preview";
   public static final String CLASSIFIER_FILE = "file";
-
+  private static final int BLOB_SIZE_LIMIT = 10000000;
   private final File file;
-  private GoogleDriveService driveService;
-  private ContentHubMimeTypeService mimeTypeService;
+  private final GoogleDriveService driveService;
+  private final ContentHubMimeTypeService mimeTypeService;
 
   public GoogleDriveItem(@NonNull ContentHubObjectId id,
                          @NonNull File file,
@@ -94,14 +93,13 @@ public class GoogleDriveItem extends BaseFileSystemItem implements Item, FileAda
       return getPreviewBlob();
     }
 
-    ContentHubBlob blob = new ContentHubDefaultBlob(
+    return new ContentHubDefaultBlob(
             this,
             classifier,
             mimeTypeService.mimeTypeForResourceName(getName()),
             getFile().getSize(),
             () -> driveService.getDownloadStream(getId().getExternalId()),
             null);
-    return blob;
   }
 
   @Nullable

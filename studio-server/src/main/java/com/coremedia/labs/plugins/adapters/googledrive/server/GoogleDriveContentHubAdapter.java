@@ -1,9 +1,5 @@
-package com.coremedia.blueprint.contenthub.adapters.googledrive;
+package com.coremedia.labs.plugins.adapters.googledrive.server;
 
-import com.coremedia.blueprint.contenthub.adapters.googledrive.model.FileAdapter;
-import com.coremedia.blueprint.contenthub.adapters.googledrive.model.GoogleDriveFolder;
-import com.coremedia.blueprint.contenthub.adapters.googledrive.model.GoogleDriveItem;
-import com.coremedia.blueprint.contenthub.adapters.googledrive.service.GoogleDriveService;
 import com.coremedia.contenthub.api.ContentHubAdapter;
 import com.coremedia.contenthub.api.ContentHubContext;
 import com.coremedia.contenthub.api.ContentHubMimeTypeService;
@@ -19,6 +15,10 @@ import com.coremedia.contenthub.api.pagination.PaginationRequest;
 import com.coremedia.contenthub.api.search.ContentHubSearchResult;
 import com.coremedia.contenthub.api.search.ContentHubSearchService;
 import com.coremedia.contenthub.api.search.Sort;
+import com.coremedia.labs.plugins.adapters.googledrive.server.model.FileAdapter;
+import com.coremedia.labs.plugins.adapters.googledrive.server.model.GoogleDriveFolder;
+import com.coremedia.labs.plugins.adapters.googledrive.server.model.GoogleDriveItem;
+import com.coremedia.labs.plugins.adapters.googledrive.server.service.GoogleDriveService;
 import com.google.api.services.drive.model.File;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import org.apache.commons.lang3.StringUtils;
@@ -32,9 +32,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.coremedia.blueprint.contenthub.adapters.googledrive.service.GoogleDriveService.GENERIC_FILE_TYPE;
-import static com.coremedia.blueprint.contenthub.adapters.googledrive.service.GoogleDriveService.IMAGES_TYPE;
-import static com.coremedia.blueprint.contenthub.adapters.googledrive.service.GoogleDriveService.VIDEO_TYPE;
+import static com.coremedia.labs.plugins.adapters.googledrive.server.service.GoogleDriveService.GENERIC_FILE_TYPE;
+import static com.coremedia.labs.plugins.adapters.googledrive.server.service.GoogleDriveService.IMAGES_TYPE;
+import static com.coremedia.labs.plugins.adapters.googledrive.server.service.GoogleDriveService.VIDEO_TYPE;
 
 public class GoogleDriveContentHubAdapter implements ContentHubAdapter, ContentHubSearchService {
 
@@ -45,8 +45,8 @@ public class GoogleDriveContentHubAdapter implements ContentHubAdapter, ContentH
   private final ContentHubMimeTypeService mimeTypeService;
   private final Map<ContentHubType, String> itemTypeToContentTypeMapping;
 
-  private GoogleDriveService driveService;
-  private GoogleDriveFolder rootFolder;
+  private final GoogleDriveService driveService;
+  private final GoogleDriveFolder rootFolder;
 
   public GoogleDriveContentHubAdapter(GoogleDriveContentHubSettings settings,
                                       String connectionId,

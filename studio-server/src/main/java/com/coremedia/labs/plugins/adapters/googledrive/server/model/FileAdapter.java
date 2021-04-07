@@ -1,4 +1,4 @@
-package com.coremedia.blueprint.contenthub.adapters.googledrive.model;
+package com.coremedia.labs.plugins.adapters.googledrive.server.model;
 
 import com.google.api.services.drive.model.File;
 

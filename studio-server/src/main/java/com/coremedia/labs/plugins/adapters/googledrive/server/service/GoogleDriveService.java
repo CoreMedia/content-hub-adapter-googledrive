@@ -1,4 +1,4 @@
-package com.coremedia.blueprint.contenthub.adapters.googledrive.service;
+package com.coremedia.labs.plugins.adapters.googledrive.server.service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -30,27 +30,22 @@ import java.util.List;
 @Service
 public class GoogleDriveService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(GoogleDriveService.class);
-
   public static final String FOLDER_MIME_TYPE = "application/vnd.google-apps.folder";
   public static final String GENERIC_FILE_TYPE = "file";
   public static final String IMAGES_TYPE = "image";
   public static final String VIDEO_TYPE = "video";
-
+  private static final Logger LOG = LoggerFactory.getLogger(GoogleDriveService.class);
   private static final String APPLICATION_NAME = "CoreMedia-Connector/1.0";
   private static final List<String> SCOPES = List.of(DriveScopes.DRIVE);
   private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-  private static HttpTransport HTTP_TRANSPORT;
-
   private static final String PRIVATE_KEY_PREFIX = "-----BEGIN PRIVATE KEY-----";
   private static final String PRIVATE_KEY_SUFFIX = "-----END PRIVATE KEY-----";
-
   private static final String FILES_GET_FIELDS = "id,name,mimeType,parents,hasThumbnail,thumbnailLink,createdTime,modifiedTime,size,imageMediaMetadata(width,height,cameraModel,lens)";
-  private static final String FILES_LIST_FIELDS = "files,files(" + FILES_GET_FIELDS +")";
-
-  private String clientId;
+  private static final String FILES_LIST_FIELDS = "files,files(" + FILES_GET_FIELDS + ")";
+  private static HttpTransport HTTP_TRANSPORT;
+  private final String clientId;
   private PrivateKey privateKey;
-  private String privateKeyId;
+  private final String privateKeyId;
   private GoogleCredential credentials;
   private Drive drive;
 
@@ -73,6 +68,10 @@ public class GoogleDriveService {
     }
 
 
+  }
+
+  public static boolean isFolder(File file) {
+    return FOLDER_MIME_TYPE.equals(file.getMimeType());
   }
 
   @Nullable
@@ -163,6 +162,9 @@ public class GoogleDriveService {
     return null;
   }
 
+
+  // --- static ---
+
   @Nullable
   public InputStream getDownloadStream(String fileId) {
     try {
@@ -173,13 +175,6 @@ public class GoogleDriveService {
       LOG.error("Unable to get download stream for {}.", fileId);
     }
     return null;
-  }
-
-
-  // --- static ---
-
-  public static boolean isFolder(File file) {
-    return FOLDER_MIME_TYPE.equals(file.getMimeType());
   }
 
 

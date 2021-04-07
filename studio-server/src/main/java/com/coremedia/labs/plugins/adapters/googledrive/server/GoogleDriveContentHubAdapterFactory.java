@@ -1,4 +1,4 @@
-package com.coremedia.blueprint.contenthub.adapters.googledrive;
+package com.coremedia.labs.plugins.adapters.googledrive.server;
 
 import com.coremedia.contenthub.api.ContentHubAdapter;
 import com.coremedia.contenthub.api.ContentHubAdapterFactory;
