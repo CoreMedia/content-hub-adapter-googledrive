@@ -1,8 +1,8 @@
 {
   "studioPlugins": [
     {
-      "mainClass": "com.coremedia.blueprint.studio.contenthub.googledrive.ContentHubGoogleDriveStudioPlugin",
-      "name": "Content Hub - Google Drive"
+      "mainClass": "com.coremedia.labs.plugins.adapters.googledrive.client.ContentHubGoogleDriveStudioPlugin",
+      "name": "Content Hub"
     }
   ]
 }
