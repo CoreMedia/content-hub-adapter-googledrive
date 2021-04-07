@@ -1,0 +1,19 @@
+{
+  "$schema": "https://releases.coremedia.com/plugins/plugin-schema-1.0.0.json",
+  "plugins": {
+    "studio-server": {
+      "maven": {
+        "groupId": "com.coremedia.labs.plugins",
+        "artifactId": "studio-server.content-hub-adapter-googledrive",
+        "version": "${project.version}"
+      }
+    },
+    "studio-client": {
+      "maven": {
+        "groupId": "com.coremedia.labs.plugins",
+        "artifactId": "studio-client.content-hub-adapter-googledrive",
+        "version": "${project.version}"
+      }
+    }
+  }
+}
