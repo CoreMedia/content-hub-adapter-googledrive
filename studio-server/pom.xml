@@ -5,7 +5,7 @@
 
   <groupId>com.coremedia.labs.plugins</groupId>
   <artifactId>studio-server.content-hub-adapter-googledrive</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
