@@ -32,12 +32,8 @@ public class GoogleDriveContentHubTransformer implements ContentHubTransformer {
   private ContentModel transformItem(GoogleDriveItem item) {
     LOG.debug("Transforming item {}", item);
     String contentName = FilenameUtils.removeExtension(item.getName());
-
-    ContentModel model = ContentModel.createContentModel(
-            contentName,
-            item.getId(),
-            item.getCoreMediaContentType());
-    model.put("title", item.getName());
+    ContentModel model = ContentModel.createContentModel(contentName, item.getId(), item.getCoreMediaContentType());
+    model.put("title", contentName);
 
     ContentHubBlob fileBlob = item.getBlob(GoogleDriveItem.CLASSIFIER_FILE);
     if (fileBlob != null) {
