@@ -5,7 +5,7 @@
 
   <groupId>com.coremedia.labs.plugins</groupId>
   <artifactId>studio-client.content-hub-adapter-googledrive</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
   <packaging>swc</packaging>
   <description>Studio Plugin for the Content Hub's Google Drive Adapter</description>
 
