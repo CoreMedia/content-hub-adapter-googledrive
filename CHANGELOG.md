@@ -1,9 +1,9 @@
 Changelog
 ================================================================================
 
-2010.1-1
+1.0.0
 --------------------------------------------------------------------------------
 
-### Initial Release 🥳
+### General Notes
 
-Basic implementation of the Content Hub API.
+* Intial release of the plugin for CMCC 11.2110.1 including all features known from latest version of CMCCv10.

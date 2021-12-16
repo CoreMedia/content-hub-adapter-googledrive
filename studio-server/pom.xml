@@ -5,15 +5,35 @@
 
   <groupId>com.coremedia.labs.plugins</groupId>
   <artifactId>studio-server.content-hub-adapter-googledrive</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <cm.studio-server.core.version>2101.1</cm.studio-server.core.version>
-    <cm.common.core.version>2101.1</cm.common.core.version>
+    <cm.studio-server.core.version>2110.1</cm.studio-server.core.version>
+    <cm.common.core.version>2110.1</cm.common.core.version>
+    <jackson.version>2.12.3</jackson.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>coremedia.external.releases</id>
+      <url>https://repository.coremedia.com/nexus/content/groups/cms/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>coremedia.external.releases</id>
+      <url>https://repository.coremedia.com/nexus/content/groups/cms/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
   <dependencyManagement>
     <dependencies>
@@ -38,12 +58,19 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.7.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
     <dependency>
-      <groupId>com.coremedia.content-hub</groupId>
+      <groupId>com.coremedia.cms</groupId>
       <artifactId>content-hub-api</artifactId>
       <scope>provided</scope>
     </dependency>
@@ -75,13 +102,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.11</version>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.8.0</version>
+      <version>3.12.0</version>
     </dependency>
 
     <dependency>
@@ -95,11 +116,22 @@
       <artifactId>spotbugs-annotations</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.10.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
@@ -116,15 +148,23 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.1.2</version>
+        <configuration>
+          <ignoredDependencies>
+            <!-- JUnit Jupiter: Use Aggregator rather than API/Engine Artifacts directly -->
+            <ignoredDependency>org.junit.jupiter:junit-jupiter</ignoredDependency>
+            <ignoredDependency>org.junit.jupiter:junit-jupiter-api</ignoredDependency>
+            <ignoredDependency>org.junit.jupiter:junit-jupiter-params</ignoredDependency>
+          </ignoredDependencies>
+        </configuration>
         <executions>
           <execution>
-            <id>studio-server.content-hub-adapter-googledrive:maven-dependency-plugin:analyze-duplicate</id>
+            <id>analyze-duplicate</id>
             <goals>
               <goal>analyze-duplicate</goal>
             </goals>
           </execution>
           <execution>
-            <id>studio-server.content-hub-adapter-googledrive:maven-dependency-plugin:analyze-only</id>
+            <id>analyze-only</id>
             <goals>
               <goal>analyze-only</goal>
             </goals>

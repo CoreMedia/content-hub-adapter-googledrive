@@ -1,22 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.coremedia.labs.plugins</groupId>
   <artifactId>content-hub-adapter-googledrive</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>studio-server</module>
-    <module>studio-client</module>
-    <module>studio-client-icons</module>
-    <module>plugin-descriptor</module>
   </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <docs.directory>${project.basedir}/docs</docs.directory>
+    <docs.directory>${project.basedir}/documentation</docs.directory>
   </properties>
 
   <build>
@@ -40,27 +39,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
-      </plugin>
-    </plugins>
   </build>
 
   <profiles>
@@ -89,5 +67,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>

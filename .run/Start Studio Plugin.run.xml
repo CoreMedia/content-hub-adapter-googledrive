@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Start Studio Plugin" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/studio-client/package.json" />
+    <command value="start" />
+    <arguments value="--filter ./apps/main/content-hub-adapter-googledrive/ -- --proxyTargetUri=http://localhost:3000" />
+    <node-interpreter value="project" />
+    <package-manager value="pnpm" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

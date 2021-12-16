@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Watch Local Changes" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/studio-client/apps/main/content-hub-adapter-googledrive/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="watch" />
+    </scripts>
+    <arguments value="-- --recursive --skipInitialBuild" />
+    <node-interpreter value="project" />
+    <package-manager value="pnpm" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>
