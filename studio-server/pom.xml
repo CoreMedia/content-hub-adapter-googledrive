@@ -6,13 +6,14 @@
   <groupId>com.coremedia.labs.plugins</groupId>
   <artifactId>studio-server.content-hub-adapter-googledrive</artifactId>
   <version>2.0.1-SNAPSHOT</version>
+  <packaging>coremedia-plugin</packaging>
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <cm.studio-server.core.version>2110.1</cm.studio-server.core.version>
-    <cm.common.core.version>2110.1</cm.common.core.version>
+    <cm.studio-server.core.version>2110.2</cm.studio-server.core.version>
+    <cm.common.core.version>2110.2</cm.common.core.version>
     <jackson.version>2.12.3</jackson.version>
   </properties>
 
@@ -177,23 +178,16 @@
       </plugin>
 
       <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.3.0</version>
+        <groupId>com.coremedia.maven</groupId>
+        <artifactId>coremedia-plugins-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <extensions>true</extensions>
         <configuration>
-          <descriptors>
-            <descriptor>src/assembly/descriptor.xml</descriptor>
-          </descriptors>
-          <appendAssemblyId>false</appendAssemblyId>
+          <pluginId>${project.artifactId}</pluginId>
+          <pluginVersion>${project.version}</pluginVersion>
+          <pluginConfigurationClass>com.coremedia.labs.plugins.adapters.googledrive.configuration.GoogleDriveContentHubAdapterConfiguration</pluginConfigurationClass>
+          <pluginProvider>CoreMedia</pluginProvider>
         </configuration>
-        <executions>
-          <execution>
-            <id>make-plugin</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>

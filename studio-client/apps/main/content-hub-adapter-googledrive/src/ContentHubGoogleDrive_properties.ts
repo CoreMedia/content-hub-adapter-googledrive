@@ -1,4 +1,4 @@
-import SvgIconUtil from "@coremedia/studio-client.cap-base-models/util/SvgIconUtil";
+import SvgIconUtil from "@coremedia/studio-client.base-models/util/SvgIconUtil";
 import CoreIcons_properties from "@coremedia/studio-client.core-icons/CoreIcons_properties";
 import icon from "./icons/google-drive_16.svg";
 
