@@ -1,8 +1,6 @@
-![CoreMedia Labs Logo](https://documentation.coremedia.com/badges/banner_coremedia_labs_wide.png "CoreMedia Labs Logo")
-
-![CoreMedia Content Cloud Version](https://img.shields.io/static/v1?message=2010&label=CoreMedia%20Content%20Cloud&style=for-the-badge&labelColor=666666&color=672779 "This badge shows the CoreMedia version this project is compatible with. 
+![CoreMedia Content Cloud Version](https://img.shields.io/static/v1?message=2404&label=CoreMedia%20Content%20Cloud&style=for-the-badge&labelColor=666666&color=672779 "This badge shows the CoreMedia version this project is compatible with. 
 Please read the versioning section of the project to see what other CoreMedia versions are supported and how to find them.")
-![Status](https://img.shields.io/static/v1?message=active&label=Status&style=for-the-badge&labelColor=666666&color=2FAC66 
+ 
 "The status badge describes if the project is maintained. Possible values are active and inactive. 
 If a project is inactive it means that the development has been discontinued and won't support future CoreMedia versions."
 )
@@ -14,13 +12,11 @@ Content stored in Google Drive is available as an additional tree inside the Cor
 
 ## Versioning
 
-The main branch of this project is suitable for CoreMedia versions since 2101.
+The main branch of this project is suitable for CoreMedia versions since 2404.
 It is based on the plugin architecture.
 
 For older CoreMedia versions there are branches with corresponding names.
 For example, if your CoreMedia version is 2010.1, checkout the branch cmcc-10-2010.
-These older versions are based on the extensions architecture, because plugins are
-available only since 2101.
 
 ## Documentation & Tutorial
 
