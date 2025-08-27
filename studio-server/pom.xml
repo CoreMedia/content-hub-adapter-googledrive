@@ -12,9 +12,9 @@
     <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <cm.studio-server.core.version>2404.1</cm.studio-server.core.version>
-    <cm.common.core.version>2404.1</cm.common.core.version>
-    <jackson.version>2.12.3</jackson.version>
+    <cm.studio-server.core.version>2506.0.0</cm.studio-server.core.version>
+    <cm.common.core.version>2506.0.0</cm.common.core.version>
+    <jackson.version>2.19.1</jackson.version>
   </properties>
 
   <repositories>
@@ -79,7 +79,7 @@
     <dependency>
       <groupId>com.google.api-client</groupId>
       <artifactId>google-api-client</artifactId>
-      <version>1.31.3</version>
+      <version>1.35.1</version>
     </dependency>
 
     <dependency>

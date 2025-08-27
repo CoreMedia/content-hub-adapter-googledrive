@@ -1,9 +1,9 @@
 package com.coremedia.labs.plugins.adapters.googledrive.configuration;
 
-import com.coremedia.contenthub.api.BaseFileSystemConfiguration;
 import com.coremedia.contenthub.api.ContentHubAdapterFactory;
 import com.coremedia.contenthub.api.ContentHubMimeTypeService;
 import com.coremedia.contenthub.api.ContentHubType;
+import com.coremedia.contenthub.beans_for_plugins.ContentHubBeansForPluginsConfiguration;
 import com.coremedia.labs.plugins.adapters.googledrive.GoogleDriveContentHubAdapterFactory;
 import com.coremedia.labs.plugins.adapters.googledrive.GoogleDriveContentHubSettings;
 import edu.umd.cs.findbugs.annotations.NonNull;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 import java.util.Map;
 
 @Configuration
-@Import({BaseFileSystemConfiguration.class})
+@Import({ContentHubBeansForPluginsConfiguration.class})
 public class GoogleDriveContentHubAdapterConfiguration {
 
   private static Map<ContentHubType, String> typeMapping() {
