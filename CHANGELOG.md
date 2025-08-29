@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.5
+## 3.0.0
 - Updated dependencies
 - Removed deprecated import of `BaseFileSystemConfiguration`
 - Compatible CoreMedia Content Cloud version: `2506.0.0`
