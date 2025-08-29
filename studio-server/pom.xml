@@ -9,7 +9,7 @@
   <packaging>coremedia-plugin</packaging>
 
   <properties>
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <cm.studio-server.core.version>2506.0.0</cm.studio-server.core.version>
@@ -148,7 +148,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.1.2</version>
+        <version>3.3.0</version>
         <configuration>
           <ignoredDependencies>
             <!-- JUnit Jupiter: Use Aggregator rather than API/Engine Artifacts directly -->
